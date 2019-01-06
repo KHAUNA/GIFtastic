@@ -5,3 +5,8 @@
 img {
     margin: 10px;
 }
+#gif-div-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1000px;
+}
