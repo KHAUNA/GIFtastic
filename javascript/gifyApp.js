@@ -1,6 +1,5 @@
-// api url
-// http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=YOUR_API_KEY
-// api key : ClQtp7UovcQoe3gclsYj7juncwa6X7CK
+//CODE BUGS:
+// you have to click twice to load the gifs.  Also second gifs append twice 
 
 //starting array
 var topics = ["bender","roberto","exploding eddie","bad santa",
