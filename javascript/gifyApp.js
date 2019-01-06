@@ -1,5 +1,8 @@
 //CODE BUGS:
-// you have to click twice to load the gifs.  Also second gifs append twice 
+// you have to click buttons twice to load the gifs.  Also second gifs append twice 
+//Its due to the fact that I was trying to make my javascript be more dynamic 
+//so I nested an onclick event. I forgot to address and fix it...poor excuse
+// but true.  It probably is fixed by doing proper event handling of some sort.
 
 //starting array
 var topics = ["bender","roberto","exploding eddie","bad santa",
@@ -27,8 +30,12 @@ $(".btn").on("click", function() {
     addedButton.text(addBtn)
     $("#gif-buttons").append(addedButton)
 });
-
+//The bug described above comes from this line.  I nested an onclick event to allow
+//javascript to be more dynamic, without this outter onlick event, the javascript will not see
+//the class .btns for buttons added by the user and will thus do nothing.  
+// This should be properly handled with event handlers...my method is incorrect.
 $('#gif-buttons').on('click', '.btns', function() {
+// on click event which passes button parameters into api calls
     $(".btns").on("click", function() {
         var searchBtn = $(this).text()
         var key = "ClQtp7UovcQoe3gclsYj7juncwa6X7CK"
@@ -39,6 +46,7 @@ $('#gif-buttons').on('click', '.btns', function() {
             url: queryURL,
             method: "GET"
         }).then(function(response) {
+// loop through api and grab first 12 results  and append them to the div
             for (i=0; i<12; i++) {
                 var gifImg = $("<img>");
                 var gifDiv = $("<div>");
@@ -52,6 +60,7 @@ $('#gif-buttons').on('click', '.btns', function() {
                 gifDiv.append(gifRating);
                 $("#gif-div-container").append(gifDiv);
             }
+// function to pause and play gifs
             $("img").on("click", function(){
                 var state = $(this).attr("data-state")
                 if (state === "stop") {
